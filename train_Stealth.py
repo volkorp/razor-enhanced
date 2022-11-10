@@ -17,13 +17,13 @@ while Player.GetRealSkillValue( 'Stealth' ) < Player.GetSkillCap( 'Stealth' ) an
             Timer.Create( 'hidingTimer', hidingTimerMilliseconds )
             Timer.Create( 'stealthTimer', stealthTimerMilliseconds )
         continue
-
-    if not Player.BuffsExist( 'Hiding' ):
+    
+    if Player.Visible:
         if not Timer.Check( 'hidingTimer' ):
             Player.UseSkill( 'Hiding' )
             Timer.Create( 'hidingTimer', hidingTimerMilliseconds )
             Timer.Create( 'stealthTimer', stealthTimerMilliseconds )
-    elif Player.BuffsExist( 'Hiding' ) and not Timer.Check( 'stealthTimer' ):
+    elif not Player.Visible and not Timer.Check( 'stealthTimer' ):
         Player.UseSkill( 'Stealth' )
         Timer.Create( 'stealthTimer', stealthTimerMilliseconds )
         Timer.Create( 'hidingTimer', hidingTimerMilliseconds )
